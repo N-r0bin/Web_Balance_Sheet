@@ -1,0 +1,174 @@
+/* element completely hidden visually but announced by screen reader */
+span[class~="sr-only"] {
+    /* !important keyword to ensure these properties are always applied, regardless of order or specificity.
+    instead of double-checking if these properties are not overwritten
+    */
+    border: 0 !important;
+     /* clip define visible portion of element */
+    clip: rect(1px, 1px, 1px, 1px) !important;
+    clip-path: inset(50%) !important; /* shape clip rectangle within element */
+    height: 1px !important;
+    width: 1px !important;
+    /* prevent text content from overflowing*/
+    position: absolute !important;
+    overflow: hidden !important;
+    white-space: nowrap !important;
+     /* hidden elements out of document flow -> not within page view */
+    padding: 0 !important;
+    margin: -1px !important;
+  }
+  
+  html {
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: sans-serif;
+    color: #0a0a23;
+  }
+  
+  h1 {
+    max-width: 37.25rem;
+    margin: 0 auto;
+    padding: 1.5rem 1.25rem;
+  }
+  
+  h1 .flex {
+    display: flex;
+    flex-direction: column-reverse; /* display the nested elements from bottom to top. */
+    gap: 1rem; /*  create some space between the elements */
+  }
+
+  /* :first-of-type pseudo-selector is used to target the first element that matches the selector. */
+  
+  h1 .flex span:first-of-type {
+    font-size: 0.7em;
+  }
+  
+/* :last-of-type pseudo-selector targets the last element that matches the selector*/
+  h1 .flex span:last-of-type {
+    font-size: 1.2em;
+  }
+  
+  section {
+    max-width: 40rem;
+    margin: 0 auto;
+    border: 2px solid #d0d0d5;
+  }
+  
+  #years {
+    display: flex;
+    justify-content: flex-end;
+    position: sticky; /* moved the element into its own stack */
+    z-index: 999;  /* To ensure your #years element does not get hidden by different stack */
+    top: 0;
+    background: #0a0a23;
+    color: #fff;
+     /* calc() function is a CSS function that allows you to calculate a value based on other values. */
+    padding: 0.5rem calc(1.25rem + 2px) 0.5rem 0;
+    margin: 0 -2px;
+  }
+  
+  #years span[class] { /* target any span element with a class attribute */
+    font-weight: bold;
+    width: 4.5rem;
+    text-align: right;
+  }
+  /* container that wrappes the tables*/
+  .table-wrap {
+    padding: 0 0.75rem 1.5rem 0.75rem;
+  }
+  /*
+no need for it after !important
+span:not(.sr-only){ /*:not() pseudo-selector is used to target all elements that do not match the selecto*/
+  /*  font-weight: normal;
+}
+instead:
+*/
+/*
+span{
+    font-weight: normal;
+}
+*/
+  table {
+    border-collapse: collapse; /*allow cell borders to collapse into a single border, instead of a border around each cell.  */
+    border: 0;  /* hide the borders themselves. */
+    width: 100%; /* table fills its container*/
+    position: relative;
+    margin-top: 3rem;
+  }
+  
+  table caption {
+    color: #356eaf;
+    font-size: 1.3em;
+    font-weight: normal;
+    position: absolute;
+    top: -2.25rem;
+    left: 0.5rem;
+  }
+  
+  tbody td {
+    /* ensures that the width is fixed, whereas setting width specifically would allow the elements to shrink to the container. */
+    width: 100vw; /* fill the viewport*/
+    min-width: 4rem;
+    max-width: 4rem;
+  }
+  
+  tbody th {
+    width: calc(100% - 12rem);
+  }
+  /* [attribute="value"] selector targets any element that has an attribute with a specific value. */
+  tr[class="total"] {
+    border-bottom: 4px double #0a0a23;
+    font-weight: bold;
+  }
+  /*  select tr elements where the only class is total */
+  tr[class="total"] th {
+    text-align: left;
+    padding: 0.5rem 0 0.25rem 0.5rem;
+  }
+  /*select tr elements where the class includes total  */
+  tr.total td {
+    text-align: right;
+    padding: 0 0.25rem;
+  }
+  /* :nth-of-type() pseudo-selector is used to target specific elements based on their order among siblings of the same type. */
+  tr.total td:nth-of-type(3) {
+    padding-right: 0.5rem;
+  }
+  
+  tr.total:hover {
+    background-color: #99c9ff;
+  }
+  
+  td.current {
+    font-style: italic;
+  }
+  
+  tr.data {
+    background-image: linear-gradient(to bottom, #dfdfe2 1.845rem, white 1.845rem);
+  }
+  
+  tr.data th {
+    text-align: left;
+    padding-top: 0.3rem;
+    padding-left: 0.5rem;
+  }
+  
+  tr.data th .description {
+    display: block;
+    font-weight: normal;
+    font-style: italic;
+    padding: 1rem 0 0.75rem;
+    margin-right: -13.5rem;
+  }
+  
+  tr.data td {
+    vertical-align: top;
+    padding: 0.3rem 0.25rem 0;
+    text-align: right;
+  }
+  
+  tr.data td:last-of-type{
+      padding-right: 0.5rem;
+  }
